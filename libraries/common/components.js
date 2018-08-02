@@ -1461,22 +1461,34 @@ prx.types.text = {
 					var _$item = $('#'+item.id+' [data-editableproperty="text"]');
 
 					var $temp = $('<span>'+prx.componentsHelper.getProp(item.text,'text-textarea')+ '&nbsp;</span>')
-						.css({
-							'display': 'inline-block',
-							'font-size': _$item.css('font-size'),
-							'font-family': item.textFont,
-							'line-height': _$item.css('line-height'),
-							'text-decoration': _$item.css('text-decoration'),
-							'font-weight': _$item.css('font-weight'),
-							'font-style': _$item.css('font-style'),
-							'letter-spacing': _$item.css('letter-spacing'),
-							width: tempWidth,
-							height: 'auto',
-							marginLeft: '5px',
-							wordWrap: 'break-word',
-							whiteSpace: wordWrapVal
-						})
-						.appendTo('body');
+						// .css({
+						// 	'display': 'inline-block',
+						// 	'font-size': _$item.css('font-size'),
+						// 	// 'font-family': item.textFont,
+						// 	'line-height': _$item.css('line-height'),
+						// 	'text-decoration': _$item.css('text-decoration'),
+						// 	'font-weight': _$item.css('font-weight'),
+						// 	'font-style': _$item.css('font-style'),
+						// 	'letter-spacing': _$item.css('letter-spacing'),
+						// 	width: tempWidth,
+						// 	height: 'auto',
+						// 	marginLeft: '5px',
+						// 	wordWrap: 'break-word',
+						// 	whiteSpace: wordWrapVal
+					// })  // item.textFont is not good enough to render the font correctly that is why i am using the attr style option to get the item.textFont and the font family through the appropriate function (get prop)
+						.appendTo('body').attr('style', 'display: inline-block; font-size: ' + _$item.css('font-size') +
+							';line-height: ' + _$item.css('line-height') +
+							';text-decoration: ' + _$item.css('text-decoration') +
+                            ';font-weight: ' + _$item.css('font-weight') +
+                            ';font-style: ' + _$item.css('font-style') +
+                            ';letter-spacing: ' + _$item.css('letter-spacing') +
+                            ';width: ' + tempWidth +
+                    		'px;height: auto ' +
+                    		';margin-left: 5px ' +
+                    		';word-wrap: break-word ' +
+                    	    ';white-space: ' + wordWrapVal + ';' +
+							 prx.componentsHelper.getProp(item.textFont,'font-family') +
+						'');
 
 					var _height = isNaN(parseInt($temp.css('line-height'))) ? $temp.height() : Math.max(parseInt($temp.css('line-height')), $temp.height())
 					var _width = $temp.width()+5;
